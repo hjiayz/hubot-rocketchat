@@ -13,7 +13,9 @@ ENV BOT_OWNER "No owner specified"
 ENV BOT_DESC "Hubot with rocketbot adapter"
 
 ENV EXTERNAL_SCRIPTS=hubot-diagnostics,hubot-help,hubot-google-images,hubot-google-translate,hubot-pugme,hubot-maps,hubot-rules,hubot-shipit
+
 ENV SCRIPTS=class-namer.coffee,chess.coffee
+
 RUN yo hubot --owner="$BOT_OWNER" --name="$BOT_NAME" --description="$BOT_DESC" --defaults && \
 	sed -i /heroku/d ./external-scripts.json && \
 	sed -i /redis-brain/d ./external-scripts.json && \
