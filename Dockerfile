@@ -1,7 +1,7 @@
 FROM node:0.12.4
 MAINTAINER Rocket.Chat Team <buildmaster@rocket.chat>
 
-RUN npm install -g coffee-script yo generator-hubot hubot-scripts &&  \
+RUN npm install -g coffee-script yo generator-hubot &&  \
 	useradd hubot -m
 
 USER hubot
@@ -34,7 +34,5 @@ RUN cd /home/hubot/node_modules/hubot-rocketchat && \
 	cd /home/hubot
 
 CMD node -e "console.log(JSON.stringify('$EXTERNAL_SCRIPTS'.split(',')))" > external-scripts.json && \
-	node -e "console.log(JSON.stringify('$SCRIPTS'.split(',')))" > hubot-scripts.json && \
-	npm install hubot-scripts && \
 	npm install $(node -e "console.log('$EXTERNAL_SCRIPTS'.split(',').join(' '))") && \
 	bin/hubot -n $BOT_NAME -a rocketchat
