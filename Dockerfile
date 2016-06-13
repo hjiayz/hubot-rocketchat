@@ -1,8 +1,9 @@
 FROM node:0.12.4
 MAINTAINER Rocket.Chat Team <buildmaster@rocket.chat>
 
-RUN npm install -g coffee-script yo generator-hubot hubot-scripts &&  \
+RUN npm install -g coffee-script yo generator-hubot &&  \
 	useradd hubot -m
+RUN npm install --save hubot-scripts@latest
 
 USER hubot
 
